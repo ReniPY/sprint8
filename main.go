@@ -101,6 +101,7 @@ func main() {
 	db, err := sql.Open("sqlite", "tracker.db")
 	if err != nil {
 		fmt.Println("Ошибка подключение к бд: ", err)
+		return
 	}
 	store := NewParcelStore(db) // создайте объект ParcelStore функцией NewParcelStore
 	service := NewParcelService(store)

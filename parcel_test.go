@@ -48,7 +48,7 @@ func TestAddGetDelete(t *testing.T) {
 	gotParcel, err := store.Get(id)
 	assert.NoError(t, err)
 	assert.Equal(t, parcel.Client, gotParcel.Client)
-	assert.Equal(t, parcel.Number, gotParcel.Number)
+	assert.Equal(t, id, gotParcel.Number)
 	assert.Equal(t, parcel.Status, gotParcel.Status)
 	assert.Equal(t, parcel.Address, gotParcel.Address)
 	assert.Equal(t, parcel.CreatedAt, gotParcel.CreatedAt)
@@ -82,7 +82,7 @@ func TestSetAddress(t *testing.T) {
 
 	// check
 	gotParcel, err := store.Get(id)
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.Equal(t, newAddress, gotParcel.Address)
 }
 
@@ -106,7 +106,7 @@ func TestSetStatus(t *testing.T) {
 
 	// check
 	gotParcel, err := store.Get(id)
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.Equal(t, newStatus, gotParcel.Status)
 }
 
@@ -139,7 +139,7 @@ func TestGetByClient(t *testing.T) {
 
 	// get by client
 	storedParcels, err := store.GetByClient(client)
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.Len(t, storedParcels, len(parcels))
 
 	// check
